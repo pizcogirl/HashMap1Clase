@@ -81,21 +81,39 @@ public class HashMap
 
     /**
      * Metodo que devuelve el número de elementos en el mapa
-     * @return El número de elementos en el mapa
+     * @return El número de elementos en el mapa. 
      */
     public int size()
     {
-
+        // Creamos el entero para retornar, si ambas listas tienen
+        // el mismo tamaño cambiamos el valor a ese tamaño
+        int retornar = -1;
+        if ((claves.size()) == (valores.size()))
+        {
+            retornar = claves.size();
+        }
+        return retornar;
     }
 
     /**
      * Metodo que elimina el elemento de la clave dada
      * @param clave La clave del elemento a eliminar
-     * @return Su valor si existia la clave, -1 sino
+     * @return Su valor si existia la clave, -1 si no
      */
     public int remove(String clave)
     {
-
+        // Creamos el entero a retornar
+        int retornar = -1;
+        // Buscamos el indice de la clave en la arraylist, si lo encontramos borramos
+        // el objeto en esa posicion en ambas listas
+        if(claves.contains(clave))
+        {
+            int indice = claves.indexOf(clave);
+            retornar = valores.get(indice);
+            claves.remove(indice);
+            valores.remove(indice);
+        }
+        return retornar;
     }
 
     /**
@@ -103,7 +121,8 @@ public class HashMap
      */
     public void clear()
     {
-
+        claves.clear();
+        valores.clear();
     }
 
     /**
@@ -113,8 +132,7 @@ public class HashMap
      */
     public boolean containsKey(String clave)
     {
-
-        return retornar;
+        return claves.contains(clave);
     }
 
     /**
@@ -125,6 +143,6 @@ public class HashMap
     public boolean containsValue(int valor)
     {
 
-        return encontrada;
+        return valores.contains(valor);
     }
 }
